@@ -5,8 +5,12 @@ from aiogram.fsm.state import StatesGroup, State
 from aiogram.fsm.context import FSMContext
 
 import app.keyboards as kb
+from app.middlewares import TestMiddleware
 
 router = Router()
+
+# router.message.middleware(TestMiddleware())
+router.message.outer_middleware(TestMiddleware())
 
 class Reg(StatesGroup):
     name = State()
